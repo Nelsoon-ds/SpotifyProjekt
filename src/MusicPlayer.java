@@ -15,7 +15,8 @@ public class MusicPlayer {
     Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+        MusicPlayer player = new MusicPlayer();
+        player.editSong();
         /**
          * MusicPlayer --> Prompter brugeren for Song
          *
@@ -42,7 +43,7 @@ public class MusicPlayer {
 
         // userInput --> Scanner
 
-        switch (userInputInt) {
+        switch (0) {
             case 1:
                 addSong();
                 break;
@@ -106,7 +107,17 @@ public class MusicPlayer {
     }
 
     public void editSong () {
-
+        System.out.println("Choose the number of the song in the playlist you want to edit: ");
+        int numberInPlaylist = scan.nextInt() - 1;
+        scan.nextLine();
+        System.out.println("What is the title of the new song? ");
+        String titleOfSong = scan.nextLine();
+        System.out.println("What is the genre of the new song? ");
+        String genreInput = scan.nextLine().toUpperCase();
+        Genre genreOfSong = Genre.valueOf(genreInput);
+        Song newSong = new Song(titleOfSong,genreOfSong);
+        playList.set(numberInPlaylist, newSong);
+        System.out.println("Your song " + titleOfSong + " has been added to #" + numberInPlaylist + " spot on your playlist" );
         // playList.set();
     }
 
