@@ -10,9 +10,17 @@ import java.util.Scanner;
 public class MusicPlayer {
     ArrayList<Song> playList = new ArrayList<>();
     Scanner scan = new Scanner(System.in);
+    Song s1 = new Song("Dior", Genre.ROCK);
+    Song s2 = new Song("Lost", Genre.POP);
+    Song s3 = new Song("Westworld", Genre.TECHNO);
+    Song s4 = new Song("F THA POLICE", Genre.RAP);
+    Song s5 = new Song("Bohemian Rhapsody", Genre.ROCK);
+    Song s6 = new Song("Keyboard", Genre.JAZZ);
+    Song s7 = new Song("Für Elise", Genre.CLASSIC);
 
     public static void main(String[] args) {
         MusicPlayer player = new MusicPlayer();
+        player.testSongs();
         player.startProgram();
         /**
          * MusicPlayer --> Prompter brugeren for Song
@@ -32,9 +40,10 @@ public class MusicPlayer {
      * </p>
      */
     public void startProgram() {
+        // Vores test sange
         // Initialize variables
         boolean isDone = false;
-        printMenu();
+        printHomeMenu();
 
         while (!isDone) {
         int userChoice = scan.nextInt();
@@ -68,13 +77,18 @@ public class MusicPlayer {
     public void playSong() {
         // skal have brugerens input til at vælge en sang
         printPlaylist();
+
+        try {
         System.out.println("Choose a song to play: ");
         int userInput = scan.nextInt();
         // To ensure it doesent eat up
         scan.nextLine();
         System.out.println(playList.get(userInput));
         // print menuen for at få brugeren tilbage
-        printMenu();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.print("Invalid input.");
+        }
+        printHomeMenu();
     }
 
     public void printPlaylist() {
@@ -108,29 +122,31 @@ public class MusicPlayer {
         } catch (IllegalArgumentException e) {
             System.out.println("Invalid genre entered. Please try again with a valid genre.");
         }
-        printMenu();
+        printHomeMenu();
 
     }
     private void deleteSong() {
-        System.out.print("Insert the tile of the song that should be removed: ");
-        String title = scan.nextLine();
+        printPlaylist();
+        System.out.print("Choose the number of the song on the playlist, you want to remove.");
+        int songId = scan.nextInt();
+        scan.nextLine();
 
+        try {
+            playList.remove(songId);
+            System.out.println("The song with ID #" + songId + " was removed.");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Invalid input.");
+        } catch(IllegalArgumentException e) {
+            System.out.println("This song doesn't exist.");
 
-        boolean removed = playList.removeIf(song -> song.getTitle().equalsIgnoreCase(title));
-        if (removed) {
-            System.out.println(title + " was removed from the playlist.") ;
-            }
-        else {
-            System.out.println(title + " was not found on the playlist.");
-            }
-
+        }
+        printHomeMenu();
     }
 
 
-
     public void clearPlaylist() {
-       // playList.clear();
-        // Fjerner alt på playlisten
+         playList.clear();
+         printHomeMenu();
     }
 
     public void editSong () {
@@ -153,10 +169,9 @@ public class MusicPlayer {
         } catch (IllegalArgumentException e) {
             System.out.println("Not eligible genre");
         }
-
-
-        // playList.set();
+        printHomeMenu();
     }
+
     public void searchSong() {
         //playList.get();
     }
@@ -164,12 +179,22 @@ public class MusicPlayer {
         System.exit(0) ;
     }
 
-    public void printMenu() {
+    public void printHomeMenu() {
         System.out.println("**************************************");
         System.out.println("Welcome to your Fake Spotify Service!");
         System.out.println("**************************************");
         System.out.println("Press 1 to add a song.\nPress 2 to delete a song.\nPress 3 to search for a song.\nPress 4 to edit song." +
                 "\nPress 5 to clear the playlist.\nPress 6 to play songs.\nPress 7 to end the program.");
         System.out.println("**************************************");
+    }
+
+    public void testSongs() {
+        playList.add(s1);
+        playList.add(s2);
+        playList.add(s3);
+        playList.add(s4);
+        playList.add(s5);
+        playList.add(s6);
+        playList.add(s7);
     }
 }

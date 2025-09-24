@@ -5,4 +5,5 @@ public enum Genre {
     DANCE,
     CLASSIC,
     JAZZ,
+    RAP,
 }
