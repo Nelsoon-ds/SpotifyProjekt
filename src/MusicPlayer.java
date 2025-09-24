@@ -117,7 +117,7 @@ public class MusicPlayer {
         Genre genreOfSong = Genre.valueOf(genreInput);
         Song newSong = new Song(titleOfSong,genreOfSong);
         playList.set(numberInPlaylist, newSong);
-        System.out.println("Your song " + titleOfSong + " has been added to #" + numberInPlaylist + " spot on your playlist" );
+        System.out.println("Your song " + titleOfSong + " has been added to #" + numberInPlaylist + 1 + " spot on your playlist" );
         // playList.set();
     }
 
