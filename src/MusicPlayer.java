@@ -37,10 +37,16 @@ public class MusicPlayer {
      * </p>
      */
     public void startProgram() {
+        System.out.println("**************************************");
+        System.out.println("Welcome to your Fake Spotify Service!");
+        System.out.println("**************************************");
+        System.out.println("Press 1 to add a song.\nPress 2 to delete a song.\nPress 3 to search for a song.\nPress 4 to edit song." +
+                "\nPress 5 to clear the playlist.\nPress 6 to play songs.\nPress 7 to end the program.");
+        System.out.println("**************************************");
 
-        // userInput --> Scanner
+        int userChoice = scan.nextInt();
 
-        switch (0) {
+        switch (userChoice) {
             case 1:
                 addSong();
                 break;
@@ -69,17 +75,23 @@ public class MusicPlayer {
 
 
     public void addSong() {
-        boolean isDone = false;
-
-//        while (!isDone) {
-//
-//            if (userInput.equalsIgnorecase("Finished"))
-//
-//        }
-
-
-        // playList.add();
-        // Her skal vi bruge vores userinput
+        String userGenre;
+        Genre genreEnum;
+        String songTitle;
+        // Ask the user for a title
+        System.out.println("Please enter the title of the song: ");
+        songTitle = scan.next();
+        // Ask the user for a genre
+        System.out.println("Please enter the genre of the song: ");
+        userGenre = scan.next();
+        System.out.println(userGenre.toUpperCase());
+        // Convert the String to enum
+        genreEnum = Genre.valueOf(userGenre);
+        // Add the song to the playlist by calling playList.add
+        Song userSong = new Song(songTitle, genreEnum);
+        playList.add(userSong);
+        // Tell the user the song has been added
+        System.out.println("Song added with title: " + songTitle + " and genre: " + genreEnum);
     }
     private void deleteSong() {
         System.out.print("Indtast titlen på sangen der skal fjernes: ");
