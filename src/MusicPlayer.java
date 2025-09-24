@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyles.title;
+
 /**
  * Tilføje sange til listen
  * Fjerne sange 😁😁
@@ -82,10 +84,33 @@ public class MusicPlayer {
         // Her skal vi bruge vores userinput
     }
 
-    public void deleteSong() {
-      //  playList.remove();
-        // Fjerner på index
+    public void deleteSong(Scanner scanner) {
+        System.out.print("Name the song you wise to remove: ");
+        String title = scanner.nextLine();
+
+        boolean removed = false;
+
+        //Fjerne sang fra PremiumPlayliste
+        for (int i = 0; i < premiumPlaylist.size(); i++)
+            if (premiumPlaylist.get(i).getName().equalsIgnoreCase(title)) {
+                premiumPlaylist.remove(i);
+                System.out.println("Sangen: " + title + " er fjernet fra din playliste");
+                removed = true;
+                break;
+            }
+
+        }
+
+        if (!removed)
+
+    {
+
+        System.out.println("Sangen med titlen: " + title + " blev ikke fundet")
+
     }
+
+    }
+
 
     public void clearPlaylist() {
        // playList.clear();
