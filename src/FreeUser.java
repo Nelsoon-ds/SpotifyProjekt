@@ -1,4 +1,5 @@
 public class FreeUser extends User {
+
     public FreeUser(String userName, boolean isSubscribed) {
         super(userName, isSubscribed);
     }

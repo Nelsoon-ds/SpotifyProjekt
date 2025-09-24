@@ -18,6 +18,10 @@ public class Song {
 
 
     public void setTitle(String title) {
+//        if (!isSubscribed) {
+//            System.out.println("You're not a premium user");
+//            return;
+//        }
         this.title = title;
     }
 
@@ -43,7 +47,7 @@ public class Song {
 
 
     public String toString() {
-        return super.toString();
+        return "Song title: " + title + " Genre: " + genre;
     }
 
 }
