@@ -63,7 +63,7 @@ public class MusicPlayer {
                 clearPlaylist();
                 break;
             case 6:
-               // playSong();
+               playSong();
                 // Print all songs
                 break;
             case 7:
@@ -73,6 +73,9 @@ public class MusicPlayer {
         }
     }
 
+    public void playSong() {
+        System.out.println(playList.toString());
+    };
 
     public void addSong() {
         String userGenre;
