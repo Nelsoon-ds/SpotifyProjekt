@@ -19,6 +19,11 @@ public class User {
         this.isSubscribed = isSubscribed;
     }
 
+
+    public boolean getSubscription() {
+       return this.isSubscribed;
+    }
+
     public String toString() {
         return "Printing user: " + userName + isSubscribed;
     }
