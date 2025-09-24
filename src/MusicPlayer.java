@@ -9,10 +9,15 @@ import java.util.Scanner;
  * Interagere med programmet gennem en tekstmenu
  */
 public class MusicPlayer {
-    ArrayList<Song> playList = new ArrayList<>();
     Scanner scan = new Scanner(System.in);
+    ArrayList<Song> playList = new ArrayList<>();
 
     public static void main(String[] args) {
+        MusicPlayer player = new MusicPlayer();
+        player.startProgram();
+
+
+
 
         /**
          * MusicPlayer --> Prompter brugeren for Song
@@ -26,10 +31,6 @@ public class MusicPlayer {
 
     }
 
-    // 0 Diskuter flowet af programmet
-    // 1 UML-Diagram
-    // 2 Fyld metoderne ud
-
 
     /**
      * <p>
@@ -37,10 +38,16 @@ public class MusicPlayer {
      * </p>
      */
     public void startProgram() {
+        System.out.println("**************************************");
+        System.out.println("Welcome to your Fake Spotify Service!");
+        System.out.println("**************************************");
+        System.out.println("Press 1 to add a song.\nPress 2 to delete a song.\nPress 3 to search for a song.\nPress 4 to edit song." +
+                "\nPress 5 to clear the playlist.\nPress 6 to play songs.\nPress 7 to end the program.");
+        System.out.println("**************************************");
 
-        // userInput --> Scanner
+        int userChoice = scan.nextInt();
 
-        switch (userInputInt) {
+        switch (userChoice) {
             case 1:
                 addSong();
                 break;
@@ -69,18 +76,32 @@ public class MusicPlayer {
 
 
     public void addSong() {
-        boolean isDone = false;
+        String userGenre;
+        Genre genreEnum;
+        String songTitle;
+        // Ask the user for a title
+        System.out.println("Please enter the title of the song: ");
+        songTitle = scan.next();
+        // Ask the user for a genre
+        System.out.println("Please enter the genre of the song: ");
+        userGenre = scan.next();
+        System.out.println(userGenre.toUpperCase());
+        // Convert the String to enum
+        genreEnum = Genre.valueOf(userGenre);
+        // Add the song to the playlist by calling playList.add
+        Song userSong = new Song(songTitle, genreEnum);
+        playList.add(userSong);
+        // Tell the user the song has been added
+        System.out.println("Song added with title: " + songTitle + " and genre: " + genreEnum);
+        // Testing playsong
+        playSong();
 
-//        while (!isDone) {
-//
-//            if (userInput.equalsIgnorecase("Finished"))
-//
-//        }
-
-
-        // playList.add();
-        // Her skal vi bruge vores userinput
     }
+
+
+    public void playSong() {
+        System.out.println(playList.toString());
+    };
 
     public void deleteSong() {
       //  playList.remove();
@@ -88,12 +109,11 @@ public class MusicPlayer {
     }
 
     public void clearPlaylist() {
-       // playList.clear();
+        playList.clear();
         // Fjerner alt på playlisten
     }
 
     public void editSong () {
-
         // playList.set();
     }
 
