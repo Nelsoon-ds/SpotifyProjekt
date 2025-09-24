@@ -83,32 +83,20 @@ public class MusicPlayer {
         // playList.add();
         // Her skal vi bruge vores userinput
     }
+    private void fjernSang() {
+        System.out.print("Indtast titlen på sangen der skal fjernes: ");
+        String titel = scanner.nextLine();
 
-    public void deleteSong(Scanner scanner) {
-        System.out.print("Name the song you wise to remove: ");
-        String title = scanner.nextLine();
-
-        boolean removed = false;
-
-        //Fjerne sang fra PremiumPlayliste
-        for (int i = 0; i < premiumPlaylist.size(); i++)
-            if (premiumPlaylist.get(i).getName().equalsIgnoreCase(title)) {
-                premiumPlaylist.remove(i);
-                System.out.println("Sangen: " + title + " er fjernet fra din playliste");
-                removed = true;
-                break;
+        for (int i = 0; i < playlist.size(); i++) {
+            if (playlist.get(i).getName().equalsIgnoreCase(titel)) {
+                System.out.println("🗑️ Sletning: " + playlist.get(i));
+                playlist.remove(i);
+                System.out.println("✅ Sangen er fjernet.");
+                return;
             }
-
         }
 
-        if (!removed)
-
-    {
-
-        System.out.println("Sangen med titlen: " + title + " blev ikke fundet")
-
-    }
-
+        System.out.println("🚫 Sangen blev ikke fundet.");
     }
 
 
