@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyles.title;
-
 /**
  * Tilføje sange til listen
  * Fjerne sange 😁😁
@@ -16,7 +13,7 @@ public class MusicPlayer {
 
     public static void main(String[] args) {
         MusicPlayer player = new MusicPlayer();
-        player.editSong();
+        player.startProgram();
         /**
          * MusicPlayer --> Prompter brugeren for Song
          *
@@ -84,19 +81,18 @@ public class MusicPlayer {
         // playList.add();
         // Her skal vi bruge vores userinput
     }
-    private void fjernSang() {
+    private void deleteSong() {
         System.out.print("Indtast titlen på sangen der skal fjernes: ");
-        String titel = scanner.nextLine();
+        String titel = scan.nextLine();
 
-        for (int i = 0; i < playlist.size(); i++) {
-            if (playlist.get(i).getName().equalsIgnoreCase(titel)) {
-                System.out.println("🗑️ Sletning: " + playlist.get(i));
-                playlist.remove(i);
+        for (int i = 0; i < playList.size(); i++) {
+            if (playList.get(i).getTitle().equalsIgnoreCase(titel)) {
+                System.out.println("🗑️ Sletning: " + playList.get(i));
+                playList.remove(i);
                 System.out.println("✅ Sangen er fjernet.");
                 return;
             }
         }
-
         System.out.println("🚫 Sangen blev ikke fundet.");
     }
 
@@ -120,13 +116,10 @@ public class MusicPlayer {
         System.out.println("Your song " + titleOfSong + " has been added to #" + numberInPlaylist + 1 + " spot on your playlist" );
         // playList.set();
     }
-
     public void searchSong() {
         //playList.get();
     }
-
     public void endProgram() {
         //
     }
-
 }
