@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-/*
+/**
  * Tilføje sange til listen
- * Fjerne sange 😁😁
+ * Fjerne sange
  * Finde sange baseret på titel
  * Vise alle sange i listen
  * Interagere med programmet gennem en tekstmenu
@@ -22,19 +22,9 @@ public class MusicPlayer {
         MusicPlayer player = new MusicPlayer();
         player.testSongs();
         player.startProgram();
-        /*
-         * MusicPlayer --> Prompter brugeren for Song
-         *
-         * PremiumUsers toString uden reklamer // FreeUser toString med reklamer
-         * Premium / FreeUser kan ikke tilføje sange
-         *
-         *
-         *
-         */
-
     }
 
-    /*
+    /**
      * <p>
      *     This is the main entry point of the program
      * </p>
@@ -43,10 +33,10 @@ public class MusicPlayer {
         // Vores test sange
         // Initialize variables
         boolean isDone = false;
-        printHomeMenu();
 
         while (!isDone) {
-        int userChoice = scan.nextInt();
+            printHomeMenu();
+            int userChoice = scan.nextInt();
         switch (userChoice) {
             case 1:
                 addSong();
@@ -74,6 +64,13 @@ public class MusicPlayer {
             }
     }
 
+
+    /**
+     * @author Heya <br>
+     * <b>Precondition:</b> <p>Prompts user for song ID</p>
+     * <b>Postcondition:</b> <p>Plays the song at index song</p>
+     * @throws IndexOutOfBoundsException
+     */
     public void playSong() {
         // skal have brugerens input til at vælge en sang
         printPlaylist();
@@ -88,17 +85,17 @@ public class MusicPlayer {
         } catch (IndexOutOfBoundsException e) {
             System.out.print("Invalid input.");
         }
-        printHomeMenu();
     }
 
+    /**
+     * <b>Pri</b>
+     */
     public void printPlaylist() {
-        System.out.println("*****************");
         System.out.println("Songlist");
         System.out.println("*****************");
         for (int i = 0; i < playList.size(); i++) {
             System.out.println("ID:" + i + "\n" + playList.get(i));
         }
-        System.out.println("**************** ");
     }
 
     public void addSong() {
@@ -122,8 +119,6 @@ public class MusicPlayer {
         } catch (IllegalArgumentException e) {
             System.out.println("Invalid genre entered. Please try again with a valid genre.");
         }
-        printHomeMenu();
-
     }
     private void deleteSong() {
         printPlaylist();
@@ -140,13 +135,11 @@ public class MusicPlayer {
             System.out.println("This song doesn't exist.");
 
         }
-        printHomeMenu();
     }
 
 
     public void clearPlaylist() {
          playList.clear();
-         printHomeMenu();
     }
 
     public void editSong () {
@@ -169,7 +162,6 @@ public class MusicPlayer {
         } catch (IllegalArgumentException e) {
             System.out.println("Not eligible genre");
         }
-        printHomeMenu();
     }
 
     public void searchSong() {
@@ -180,7 +172,7 @@ public class MusicPlayer {
     }
 
     public void printHomeMenu() {
-        System.out.println("**************************************");
+        System.out.println();
         System.out.println("Welcome to your Fake Spotify Service!");
         System.out.println("**************************************");
         System.out.println("Press 1 to add a song.\nPress 2 to delete a song.\nPress 3 to search for a song.\nPress 4 to edit song." +
