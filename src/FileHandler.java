@@ -1,10 +1,39 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class FileHandler {
+    // Global Attributes needed
+    public static final String COMMA_DELIMITER = ",";
+
+    public ArrayList<Song> createPlaylist() {
+        ArrayList<Song> playList = new ArrayList<>();
+        ArrayList<List<String>> records = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("playlist.csv"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.trim().split(COMMA_DELIMITER);
+
+                for (int i = 0; i < values.length; i++) {
+                    values[i] = values[i].trim();
+                }
+                records.add(Arrays.asList(values));
+
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (List<String> record : records) {
+            String title = record.get(0);
+            Genre genre = Genre.valueOf(record.get(1).toUpperCase());
+            Song song = new Song(title, genre);
+            playList.add(song);
+        }
+        System.out.println(records);
+        return playList;
+    }
 
     // Metode til at oprette en ny fil
     public void createFile(String filename) {
@@ -17,8 +46,11 @@ public class FileHandler {
             } else {
                 System.out.println("File already exists at: " + file.getAbsolutePath());
             }
-
-        } catch (IOException e) {
+        } catch(FileNotFoundException e) {
+            System.out.println("Could not locate file location.");
+            e.printStackTrace();
+        }
+        catch (IOException e) {
             System.out.println("An error occurred while creating the file.");
             e.printStackTrace();
         }
@@ -26,9 +58,8 @@ public class FileHandler {
 
     // Metode til at write i en  fil
     public void writeFile(String filename) {
-        try {
+        try (FileWriter writer = new FileWriter(filename);){
             // Create a FileWriter (will create file if it does not exist)
-            FileWriter writer = new FileWriter(filename);
             // Write some text to the file
             writer.write("Hello from Java!\n");
             writer.write("This file was created and written using FileWriter.\n");

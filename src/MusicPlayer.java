@@ -1,42 +1,54 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-/**
- * Tilføje sange til listen
- * Fjerne sange
- * Finde sange baseret på titel
- * Vise alle sange i listen
- * Interagere med programmet gennem en tekstmenu
- */
+
 public class MusicPlayer {
-
-    // Adding our Attributes
-    ArrayList<Song> playList = new ArrayList<>();
-    Scanner scan = new Scanner(System.in);
-    private User currentUser;
-    String fileName = "playlist.txt";
+    // Required Objects
     FileHandler fh = new FileHandler();
+    Scanner scan = new Scanner(System.in);
+    // User session
+    private User currentUser;
+    // Creates a playlist from our filehandler
+    // Currently it grabs a playlist.csv file from the src directory
+    ArrayList<Song> playList = fh.createPlaylist();
 
-
-
-
+    /**
+     * <p>
+     * This is the main entry point of the MusicPlayer program.
+     * </p>
+     * <p>
+     * It creates a {@link MusicPlayer} instance and starts the program
+     * by calling the {@link #startProgram()} method.
+     * </p>
+     * <p>
+     * The program's core functionality is managed through a menu-driven interface,
+     * allowing users to interact with a playlist of songs. The primary methods called
+     * in a typical session include:
+     * <ul>
+     * <li>{@link #testSongs()} - Adds a predefined list of songs for testing.</li>
+     * <li>{@link #startProgram()} - Initiates the main program loop and menu.</li>
+     * <li>{@link #chooseUser()} - Prompts the user to select their account type (Free or Premium).</li>
+     * <li>{@link #printHomeMenu()} - Displays the main menu options.</li>
+     * </ul>
+     * Depending on the user's choice, it will call other methods like {@link #addSong()},
+     * {@link #deleteSong()}, {@link #searchSong()}, {@link #editSong()}, {@link #clearPlaylist()},
+     * and {@link #playSong()}.
+     * </p>
+     *
+     * @param args Command-line arguments.
+     * @see #startProgram()
+     * @see #testSongs()
+     * @see #addSong()
+     * @see #deleteSong()
+     * @see #playSong()
+     */
     public static void main(String[] args) {
         MusicPlayer player = new MusicPlayer();
-        player.testSongs();
         player.startProgram();
     }
 
 
 
-    /**
-     * <p>
-     *     This is the main entry point of the program
-     * </p>
-     */
     public void startProgram() {
-        fh.createFile("/Users/davidolsen/Documents/FileWriter/playlist.txt");
-        String fileContent = fh.readFileAsString(fileName);
-        System.out.println(fileContent);
-
         // Initialize variables
         boolean isDone = false;
         chooseUser();
@@ -75,7 +87,6 @@ public class MusicPlayer {
     private void chooseUser() {
         System.out.print("Enter your username: ");
         String username = scan.nextLine();
-
         System.out.print("Are you a Premium-user (yes/no): ");
         String userResponse = scan.next().toLowerCase();
 
@@ -107,16 +118,13 @@ public class MusicPlayer {
         int userInput = scan.nextInt();
         // To ensure it doesent eat up
         scan.nextLine();
-        System.out.println(playList.get(userInput));
+        System.out.println("Playing song: " + playList.get(userInput).title);
         // print menuen for at få brugeren tilbage
         } catch (IndexOutOfBoundsException e) {
             System.out.print("Invalid input.");
         }
     }
 
-    /**
-     * <b>Pri</b>
-     */
     public void printPlaylist() {
         System.out.println("Songlist");
         System.out.println("*****************");
@@ -230,6 +238,7 @@ public class MusicPlayer {
                 "\nPress 5 to clear the playlist.\nPress 6 to play songs.\nPress 7 to end the program.");
         System.out.println("**************************************");
     }
+
 
     public void testSongs() {
         Song s1 = new Song("Dior", Genre.ROCK);
