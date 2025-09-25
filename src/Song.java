@@ -1,4 +1,4 @@
-/**
+/*
 Tilføj dokumentation
  Du kan sætte genre og titel
  Du kan gette genre og titel

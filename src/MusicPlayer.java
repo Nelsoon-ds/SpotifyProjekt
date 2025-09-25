@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-/**
+/*
  * Tilføje sange til listen
  * Fjerne sange 😁😁
  * Finde sange baseret på titel
@@ -22,7 +22,7 @@ public class MusicPlayer {
         MusicPlayer player = new MusicPlayer();
         player.testSongs();
         player.startProgram();
-        /**
+        /*
          * MusicPlayer --> Prompter brugeren for Song
          *
          * PremiumUsers toString uden reklamer // FreeUser toString med reklamer
@@ -34,7 +34,7 @@ public class MusicPlayer {
 
     }
 
-    /**
+    /*
      * <p>
      *     This is the main entry point of the program
      * </p>
