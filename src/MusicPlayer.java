@@ -73,10 +73,15 @@ public class MusicPlayer {
      */
     public void playSong() {
         // skal have brugerens input til at vælge en sang
-        printPlaylist();
 
         try {
-        System.out.println("Choose a song to play: ");
+            // Hvis playlisten er tom skal du tilbage
+            if (playList.isEmpty()) {
+                System.out.println("Your playlist is empty.");
+                return;
+            }
+            printPlaylist();
+            System.out.println("Choose a song to play: ");
         int userInput = scan.nextInt();
         // To ensure it doesent eat up
         scan.nextLine();
@@ -167,6 +172,9 @@ public class MusicPlayer {
     public void searchSong() {
         //playList.get();
     }
+    /*
+    Skal den ikke bare gemme vores playlist
+     */
     public void endProgram() {
         System.exit(0) ;
     }
