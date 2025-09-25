@@ -37,6 +37,7 @@ public class MusicPlayer {
         while (!isDone) {
             printHomeMenu();
             int userChoice = scan.nextInt();
+            scan.nextLine();
         switch (userChoice) {
             case 1:
                 addSong();
@@ -171,7 +172,24 @@ public class MusicPlayer {
 
     public void searchSong() {
         //playList.get();
-    }
+            System.out.println("What is the title of the song you want to find?");
+            String titleOfSong = scan.nextLine().trim();
+
+            boolean found = false;
+
+            for (Song s : playList) {
+                if (s.getTitle().trim().equalsIgnoreCase(titleOfSong)) {
+                    System.out.println("Sangen " + s.getTitle() + " " + s.getGenre() + " blev fundet");
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                System.out.println("Your song coulnd't be found.");
+            }
+        }
+
+
     /*
     Skal den ikke bare gemme vores playlist
      */
