@@ -5,6 +5,16 @@ public class PremiumUser extends User {
 
     @Override
     public String toString() {
+
         return "Premium User: " + userName + " " + isSubscribed;
+    }
+
+    public boolean canAddSongs() {
+        System.out.println();
+        return true; // kan ikke tilføje sange
+    }
+
+    public boolean hasAds() {
+        return false;
     }
 }

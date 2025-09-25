@@ -19,9 +19,17 @@ public class User {
         this.isSubscribed = isSubscribed;
     }
 
-
     public boolean getSubscription() {
        return this.isSubscribed;
+    }
+
+    public boolean canAddSongs() {
+        System.out.println();
+        return false; // kan ikke tilføje sange
+    }
+
+    public boolean hasAds() {
+        return true;
     }
 
     public String toString() {

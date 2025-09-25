@@ -10,6 +10,8 @@ import java.util.Scanner;
 public class MusicPlayer {
     ArrayList<Song> playList = new ArrayList<>();
     Scanner scan = new Scanner(System.in);
+    private User currentUser;
+
     Song s1 = new Song("Dior", Genre.ROCK);
     Song s2 = new Song("Lost", Genre.POP);
     Song s3 = new Song("Westworld", Genre.TECHNO);
@@ -24,6 +26,8 @@ public class MusicPlayer {
         player.startProgram();
     }
 
+
+
     /**
      * <p>
      *     This is the main entry point of the program
@@ -33,10 +37,12 @@ public class MusicPlayer {
         // Vores test sange
         // Initialize variables
         boolean isDone = false;
+        chooseUser();
 
         while (!isDone) {
             printHomeMenu();
             int userChoice = scan.nextInt();
+            scan.nextLine();
         switch (userChoice) {
             case 1:
                 addSong();
@@ -64,6 +70,21 @@ public class MusicPlayer {
             }
     }
 
+    private void chooseUser() {
+        System.out.print("Enter your username: ");
+        String username = scan.nextLine();
+
+        System.out.print("Are you a Premium-user (yes/no): ");
+        String userResponse = scan.next().toLowerCase();
+
+        if (userResponse.equals("yes")) {
+            currentUser = new PremiumUser(username, true);
+        } else {
+            currentUser = new FreeUser(username, false);
+        }
+        System.out.println("Logged in as: " + currentUser);
+    }
+
 
     /**
      * @author Heya <br>
@@ -73,7 +94,6 @@ public class MusicPlayer {
      */
     public void playSong() {
         // skal have brugerens input til at vælge en sang
-
         try {
             // Hvis playlisten er tom skal du tilbage
             if (playList.isEmpty()) {
@@ -104,6 +124,10 @@ public class MusicPlayer {
     }
 
     public void addSong() {
+       // Hvis brugeren ikke er premium så gå tilbage til menuen.
+        if (!currentUser.canAddSongs()) {
+            return;
+        }
         String userGenre;
         Genre genreEnum;
         String songTitle;
