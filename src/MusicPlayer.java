@@ -8,17 +8,16 @@ import java.util.Scanner;
  * Interagere med programmet gennem en tekstmenu
  */
 public class MusicPlayer {
+
+    // Adding our Attributes
     ArrayList<Song> playList = new ArrayList<>();
     Scanner scan = new Scanner(System.in);
     private User currentUser;
+    String fileName = "playlist.txt";
+    FileHandler fh = new FileHandler();
 
-    Song s1 = new Song("Dior", Genre.ROCK);
-    Song s2 = new Song("Lost", Genre.POP);
-    Song s3 = new Song("Westworld", Genre.TECHNO);
-    Song s4 = new Song("F THA POLICE", Genre.RAP);
-    Song s5 = new Song("Bohemian Rhapsody", Genre.ROCK);
-    Song s6 = new Song("Keyboard", Genre.JAZZ);
-    Song s7 = new Song("Für Elise", Genre.CLASSIC);
+
+
 
     public static void main(String[] args) {
         MusicPlayer player = new MusicPlayer();
@@ -34,7 +33,10 @@ public class MusicPlayer {
      * </p>
      */
     public void startProgram() {
-        // Vores test sange
+        fh.createFile("/Users/davidolsen/Documents/FileWriter/playlist.txt");
+        String fileContent = fh.readFileAsString(fileName);
+        System.out.println(fileContent);
+
         // Initialize variables
         boolean isDone = false;
         chooseUser();
@@ -230,6 +232,13 @@ public class MusicPlayer {
     }
 
     public void testSongs() {
+        Song s1 = new Song("Dior", Genre.ROCK);
+        Song s2 = new Song("Lost", Genre.POP);
+        Song s3 = new Song("Westworld", Genre.TECHNO);
+        Song s4 = new Song("F THA POLICE", Genre.RAP);
+        Song s5 = new Song("Bohemian Rhapsody", Genre.ROCK);
+        Song s6 = new Song("Keyboard", Genre.JAZZ);
+        Song s7 = new Song("Für Elise", Genre.CLASSIC);
         playList.add(s1);
         playList.add(s2);
         playList.add(s3);
