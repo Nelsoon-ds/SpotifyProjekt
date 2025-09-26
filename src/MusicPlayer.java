@@ -77,6 +77,9 @@ public class MusicPlayer {
                playSong();
                 break;
             case 7:
+                showAllSongs();
+                break;
+            case 8:
                 isDone = true;
                 endProgram();
                 break;
@@ -205,22 +208,32 @@ public class MusicPlayer {
 
     public void searchSong() {
         //playList.get();
-            System.out.println("What is the title of the song you want to find?");
-            String titleOfSong = scan.nextLine().trim();
+        System.out.println("What is the title of the song you want to find?");
+        String titleOfSong = scan.nextLine().trim();
 
-            boolean found = false;
+        boolean found = false;
 
-            for (Song s : playList) {
-                if (s.getTitle().trim().equalsIgnoreCase(titleOfSong)) {
-                    System.out.println("Sangen " + s.getTitle() + " " + s.getGenre() + " blev fundet");
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                System.out.println("Your song coulnd't be found.");
+        for (Song s : playList) {
+            if (s.getTitle().trim().equalsIgnoreCase(titleOfSong)) {
+                System.out.println("Sangen " + s.getTitle() + " " + s.getGenre() + " blev fundet");
+                found = true;
+                break;
             }
         }
+        if (!found) {
+            System.out.println("Your song coulnd't be found.");
+        }
+    }
+    public void showAllSongs() {
+        if (playList.isEmpty()){
+            System.out.println("Your playlist is empty");
+            return;
+        }
+        System.out.println("Your songs: ");
+        for (Song song : playList) {
+            System.out.println("- " + song);
+        }
+    }
 
 
     /*
@@ -235,7 +248,7 @@ public class MusicPlayer {
         System.out.println("Welcome to your Fake Spotify Service!");
         System.out.println("**************************************");
         System.out.println("Press 1 to add a song.\nPress 2 to delete a song.\nPress 3 to search for a song.\nPress 4 to edit song." +
-                "\nPress 5 to clear the playlist.\nPress 6 to play songs.\nPress 7 to end the program.");
+                "\nPress 5 to clear the playlist.\nPress 6 to play songs.\nPress 7 show all songs.\nPress 8 to end program.");
         System.out.println("**************************************");
     }
 
