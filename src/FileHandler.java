@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileHandler {
+    Scanner scanner = new Scanner(System.in);
     // Global Attributes needed
     public static final String COMMA_DELIMITER = ",";
 
@@ -36,24 +37,31 @@ public class FileHandler {
     }
 
     // Metode til at oprette en ny fil
-    public void createFile(String filename) {
+    public void createPlaylistFile() {
+        System.out.println("Enter the name of new playlist: ");
+        String fileName = scanner.nextLine();
+        if(!fileName.toLowerCase().endsWith(".csv")) {
+            fileName += ".csv";
+        }
         try {
-            File file = new File(filename); // Fil-objekt
+            File file = new File(fileName); // Fil-objekt
 
             if (file.createNewFile()) {
-                System.out.println("File created: " + file.getName());
+                System.out.println("Playlist created: " + file.getName());
                 System.out.println("Absolute path: " + file.getAbsolutePath());
             } else {
-                System.out.println("File already exists at: " + file.getAbsolutePath());
+                System.out.println("Playlist already exists at: " + file.getAbsolutePath());
             }
+            scanner.close();
         } catch(FileNotFoundException e) {
-            System.out.println("Could not locate file location.");
+            System.out.println("Could not locate playlist location.");
             e.printStackTrace();
         }
         catch (IOException e) {
-            System.out.println("An error occurred while creating the file.");
+            System.out.println("An error occurred while creating the playlist.");
             e.printStackTrace();
         }
+        scanner.close();
     }
 
     // Metode til at write i en  fil
