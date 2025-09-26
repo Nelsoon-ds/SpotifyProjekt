@@ -20,7 +20,7 @@ public class MusicPlayer {
      * by calling the {@link #startProgram()} method.
      * </p>
      * <p>
-     * The program's core functionality is managed through a menu-driven interface,
+     * The pr   ogram's core functionality is managed through a menu-driven interface,
      * allowing users to interact with a playlist of songs. The primary methods called
      * in a typical session include:
      * <ul>
@@ -118,11 +118,19 @@ public class MusicPlayer {
             }
             printPlaylist();
             System.out.println("Choose a song to play: ");
-        int userInput = scan.nextInt();
-        // To ensure it doesent eat up
-        scan.nextLine();
-        System.out.println("Playing song: " + playList.get(userInput).title);
-        // print menuen for at få brugeren tilbage
+            int userInput = scan.nextInt();
+            // To ensure it doesent eat up
+            scan.nextLine();
+            System.out.println("Playing song: " + playList.get(userInput).title);
+
+            for (Song song : playList) {
+                if (song.getTitle().equalsIgnoreCase(song.title)){
+                    if (currentUser.hasAds()){
+                        System.out.println("!ADDS! Upgrade to preimium");
+                    }
+                }
+            }
+            // print menuen for at få brugeren tilbage
         } catch (IndexOutOfBoundsException e) {
             System.out.print("Invalid input.");
         }
