@@ -45,9 +45,15 @@ public class Song {
         return this.genre;
     }
 
+    public String csvFormat() {
+        return title + "," + genre;
+    }
+
+     //       return "Song title: " + title + " Genre: " + genre;
+
 
     public String toString() {
-        return "Song title: " + title + " Genre: " + genre;
+        return title + "," + genre;
     }
 
 }

@@ -8,10 +8,14 @@ public class FileHandler {
     // Global Attributes needed
     public static final String COMMA_DELIMITER = ",";
 
+    // Brug filepath her til brug i metoden saveFile
+    public static final String filePath = "something.csv";
+
+
     public ArrayList<Song> createPlaylist() {
         ArrayList<Song> playList = new ArrayList<>();
         ArrayList<List<String>> records = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("playlist.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("something.csv"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.trim().split(COMMA_DELIMITER);
@@ -74,13 +78,33 @@ public class FileHandler {
         }
     }
 
+    public void saveFile(ArrayList<Song> playList) {
+
+        // Get the content that I want to save to my file
+        try (FileWriter writer = new FileWriter(filePath)){
+            // Create a FileWriter (will create file if it does not exist)
+            // Write some text to the file
+            for (Song song : playList) {
+                writer.write(song.getTitle() + COMMA_DELIMITER + song.getGenre() + "\n");
+            }
+            // Always close the writer to save changes
+            writer.close();
+
+            System.out.println("File created and text written successfully!");
+
+        } catch (IOException e) {
+            System.out.println("⚠️ An error occurred: " + e.getMessage());
+        }
+
+
+    }
+
     public String readFileAsString(String filePath) {
         StringBuilder content = new StringBuilder();
 
         try {
             File file = new File(filePath);
             Scanner scanner = new Scanner(file);
-
             // Læs filen linje for linje
             while (scanner.hasNextLine()) {
                 content.append(scanner.nextLine()).append("\n");

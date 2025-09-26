@@ -20,7 +20,7 @@ public class MusicPlayer {
      * by calling the {@link #startProgram()} method.
      * </p>
      * <p>
-     * The pr   ogram's core functionality is managed through a menu-driven interface,
+     * The program's core functionality is managed through a menu-driven interface,
      * allowing users to interact with a playlist of songs. The primary methods called
      * in a typical session include:
      * <ul>
@@ -77,14 +77,19 @@ public class MusicPlayer {
                playSong();
                 break;
             case 7:
-                showAllSongs();
-                break;
-            case 8:
                 isDone = true;
                 endProgram();
                 break;
+            case 8:
+                savePlaylist();
+                break;
         }
             }
+    }
+
+    private void savePlaylist() {
+        System.out.println("Saving the playlist with the current songs: " + playList.toString());
+        fh.saveFile(playList);
     }
 
     private void chooseUser() {
@@ -118,19 +123,11 @@ public class MusicPlayer {
             }
             printPlaylist();
             System.out.println("Choose a song to play: ");
-            int userInput = scan.nextInt();
-            // To ensure it doesent eat up
-            scan.nextLine();
-            System.out.println("Playing song: " + playList.get(userInput).title);
-
-            for (Song song : playList) {
-                if (song.getTitle().equalsIgnoreCase(song.title)){
-                    if (currentUser.hasAds()){
-                        System.out.println("!ADDS! Upgrade to preimium");
-                    }
-                }
-            }
-            // print menuen for at få brugeren tilbage
+        int userInput = scan.nextInt();
+        // To ensure it doesent eat up
+        scan.nextLine();
+        System.out.println("Playing song: " + playList.get(userInput).title);
+        // print menuen for at få brugeren tilbage
         } catch (IndexOutOfBoundsException e) {
             System.out.print("Invalid input.");
         }
@@ -216,32 +213,22 @@ public class MusicPlayer {
 
     public void searchSong() {
         //playList.get();
-        System.out.println("What is the title of the song you want to find?");
-        String titleOfSong = scan.nextLine().trim();
+            System.out.println("What is the title of the song you want to find?");
+            String titleOfSong = scan.nextLine().trim();
 
-        boolean found = false;
+            boolean found = false;
 
-        for (Song s : playList) {
-            if (s.getTitle().trim().equalsIgnoreCase(titleOfSong)) {
-                System.out.println("Sangen " + s.getTitle() + " " + s.getGenre() + " blev fundet");
-                found = true;
-                break;
+            for (Song s : playList) {
+                if (s.getTitle().trim().equalsIgnoreCase(titleOfSong)) {
+                    System.out.println("Sangen " + s.getTitle() + " " + s.getGenre() + " blev fundet");
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                System.out.println("Your song coulnd't be found.");
             }
         }
-        if (!found) {
-            System.out.println("Your song coulnd't be found.");
-        }
-    }
-    public void showAllSongs() {
-        if (playList.isEmpty()){
-            System.out.println("Your playlist is empty");
-            return;
-        }
-        System.out.println("Your songs: ");
-        for (Song song : playList) {
-            System.out.println("- " + song);
-        }
-    }
 
 
     /*
@@ -256,7 +243,7 @@ public class MusicPlayer {
         System.out.println("Welcome to your Fake Spotify Service!");
         System.out.println("**************************************");
         System.out.println("Press 1 to add a song.\nPress 2 to delete a song.\nPress 3 to search for a song.\nPress 4 to edit song." +
-                "\nPress 5 to clear the playlist.\nPress 6 to play songs.\nPress 7 show all songs.\nPress 8 to end program.");
+                "\nPress 5 to clear the playlist.\nPress 6 to play songs.\nPress 7 to end the program.\nPress 8 to save the playlist.");
         System.out.println("**************************************");
     }
 
