@@ -36,10 +36,11 @@ public class FileHandler {
         return playList;
     }
 
-    // Metode til at oprette en ny fil
+    // Metode til at oprette en ny playlist fil
     public void createPlaylistFile() {
         System.out.println("Enter the name of new playlist: ");
         String fileName = scanner.nextLine();
+        // Tilføjer .csv til brugerens input, så det rent faktisk laver en csv fil
         if(!fileName.toLowerCase().endsWith(".csv")) {
             fileName += ".csv";
         }
@@ -61,7 +62,6 @@ public class FileHandler {
             System.out.println("An error occurred while creating the playlist.");
             e.printStackTrace();
         }
-        scanner.close();
     }
 
     // Metode til at write i en  fil
