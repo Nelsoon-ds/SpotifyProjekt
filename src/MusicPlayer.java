@@ -247,6 +247,10 @@ public class MusicPlayer {
         System.out.println("**************************************");
     }
 
+    public void createNewPlaylist(){
+        fh.createPlaylist();
+    }
+
 
     public void testSongs() {
         Song s1 = new Song("Dior", Genre.ROCK);
