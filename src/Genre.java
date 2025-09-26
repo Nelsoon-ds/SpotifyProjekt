@@ -1,13 +1,5 @@
 /**
- * <b>TO DO
- * <ul>
- *     <li>
- *         ADD OPTION TO POPULATE THE ENUMS WITH NEW GENRES
- *     </li>
- *     <li>
- *         ADD OPTION TO REMOVE GENRES
- *     </li>
- * </ul></b>
+ * <p>Det giver ikke mening. Vi skal bare bruge strings...</p>
  */
 public enum Genre {
     ROCK,
