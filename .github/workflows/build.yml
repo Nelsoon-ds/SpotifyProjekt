@@ -22,6 +22,7 @@ jobs:
         run: mvn clean package -DskipTests
       - name: List class files
         run: dir /s /b *.class
+        shell: cmd
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
