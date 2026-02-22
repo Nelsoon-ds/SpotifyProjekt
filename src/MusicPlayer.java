@@ -1,4 +1,5 @@
 import models.Genre;
+import ui.Logger;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,11 +8,16 @@ public class MusicPlayer {
     // Required Objects
     FileHandler fh = new FileHandler();
     Scanner scan = new Scanner(System.in);
+    Logger logger;
     // User session
     private User currentUser;
     // Creates a playlist from our filehandler
     // Currently it grabs a playlist.csv file from the src directory
     ArrayList<Song> playList = fh.createPlaylist();
+
+    MusicPlayer() {
+        this.logger = new Logger();
+    }
 
     /**
      * <p>
@@ -90,12 +96,13 @@ public class MusicPlayer {
     }
 
     private void savePlaylist() {
-        System.out.println("Saving the playlist with the current songs: " + playList.toString());
+       logger.print("Saving the playlist with the current songs: ");
+       logger.print(playList.toString());
         fh.saveFile(playList);
     }
 
     private void chooseUser() {
-        System.out.print("Enter your username: ");
+        logger.print("Enter your username: ");
         String username = scan.nextLine();
         System.out.print("Are you a Premium-user (yes/no): ");
         String userResponse = scan.next().toLowerCase();
