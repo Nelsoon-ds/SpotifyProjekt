@@ -1,3 +1,5 @@
+package models;
+
 /**
  * <p>Det giver ikke mening. Vi skal bare bruge strings...</p>
  */

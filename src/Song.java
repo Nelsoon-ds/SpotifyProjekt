@@ -4,6 +4,8 @@ Tilføj dokumentation
  Du kan gette genre og titel
  */
 
+import models.Genre;
+
 public class Song {
 
 private    String title;
@@ -49,7 +51,7 @@ private    String title;
         return title + "," + genre;
     }
 
-     //       return "Song title: " + title + " Genre: " + genre;
+     //       return "Song title: " + title + " models.Genre: " + genre;
 
 
     public String toString() {
