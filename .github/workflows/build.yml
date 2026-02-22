@@ -20,6 +20,8 @@ jobs:
           distribution: 'temurin'
       - name: Build with Maven
         run: mvn clean package -DskipTests
+      - name: List class files
+        run: dir /s /b *.class
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
