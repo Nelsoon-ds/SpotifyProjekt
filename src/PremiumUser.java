@@ -10,7 +10,7 @@ public class PremiumUser extends User {
     }
 
     public boolean canAddSongs() {
-        System.out.println();
+        System.out.println("User can add new songs");
         return true; // kan ikke tilføje sange
     }
 

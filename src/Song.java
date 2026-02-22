@@ -6,8 +6,8 @@ Tilføj dokumentation
 
 public class Song {
 
-    String title;
-    Genre genre;
+private    String title;
+ private    Genre genre;
 
 
     // Constructor

@@ -126,7 +126,7 @@ public class MusicPlayer {
         int userInput = scan.nextInt();
         // To ensure it doesent eat up
         scan.nextLine();
-        System.out.println("Playing song: " + playList.get(userInput).title);
+        System.out.println("Playing song: " + playList.get(userInput).getTitle());
         // print menuen for at få brugeren tilbage
         } catch (IndexOutOfBoundsException e) {
             System.out.print("Invalid input.");

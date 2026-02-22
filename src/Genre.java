@@ -9,4 +9,5 @@ public enum Genre {
     CLASSIC,
     JAZZ,
     RAP,
+    OPERA,
 }
